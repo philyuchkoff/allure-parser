@@ -11,7 +11,7 @@
 ### Соберите и запустите парсер:
 
     go build -o allure-parser .
-    ./allure-parser path/to/allure-results
+    ./allure-parser ./allure-results 8080
 
 ### Проверьте метрики:
 
