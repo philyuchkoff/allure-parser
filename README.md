@@ -14,6 +14,8 @@
 
     http://localhost:8080/metrics
 
+Метрики обновляются раз в 30 секунд.
+
 ## Пример вывода метрик:
 
     # HELP allure_tests_total Total number of tests by status
