@@ -6,10 +6,20 @@
 ### Установите зависимости:
 
     go get github.com/prometheus/client_golang
+    go get go.uber.org/zap
 
-### Запустите парсер:
+### Соберите и запустите парсер:
 
-    go run main.go path/to/allure-results
+    go build -o allure-parser .
+    ./allure-parser path/to/allure-results
+
+### Проверьте метрики:
+
+    curl http://localhost:8080/metrics
+
+### Проверьте "здоровье":
+
+    curl http://localhost:8080/health
 
 ### Метрики будут доступны:
 
@@ -33,6 +43,11 @@
     # HELP allure_test_duration_seconds Individual test duration
     # TYPE allure_test_duration_seconds gauge
     allure_test_duration_seconds{test_name="login_test"} 12.5
+
+## Пример логов:
+
+    {"level":"info","ts":1630000000,"msg":"Successfully parsed reports","test_cases":42,"summary":{"statistic":{"passed":38,"failed":2,"broken":1,"skipped":1},"time":{"duration":120000}}}
+    {"level":"warn","ts":1630000001,"msg":"Failed to parse environment","error":"file not found"}
 
 ## Что умеет
 ### Комплексное логирование:
