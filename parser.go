@@ -387,6 +387,7 @@ func updateTestCaseMetrics(tc *AllureTestCase) {
 }
 
 // Вспомогательные функции
+// Извлекает значение конкретного тега (label) из списка меток тест-кейса
 func getLabelValue(labels []Label, name string) string {
 	for _, label := range labels {
 		if strings.EqualFold(label.Name, name) {
@@ -396,6 +397,7 @@ func getLabelValue(labels []Label, name string) string {
 	return "unknown"
 }
 
+// Определяет, нужно ли учитывать метку при экспорте в Prometheus
 func isUsefulLabel(name string) bool {
 	usefulLabels := map[string]bool{
 		"epic":      true,
