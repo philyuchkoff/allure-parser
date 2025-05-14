@@ -50,6 +50,7 @@
     {"level":"warn","ts":1630000001,"msg":"Failed to parse environment","error":"file not found"}
 
 ## Что умеет
+
 ### Комплексное логирование:
 
  - использован zap для структурированного логирования 
@@ -60,7 +61,8 @@
 
  - проверка ошибок на всех этапах 
  - обертывание ошибок с контекстом (%w)
- - грейсфул деградация (пропуск битых файлов)
+ - graceful degradation (пропуск битых файлов) и при частичных ошибках
+ - подробное логирование проблем
 
 ### Health Check:
 
@@ -71,6 +73,24 @@
 
  - метрика flaky-тестов 
  - валидация данных перед экспортом
+-   количество шагов в тестах (`allure_test_steps_total`)
+-   информация о severity (`allure_test_status`)
+
+### Environment-метрики:
+    
+-   добавлен сбор данных из  `environment.json`
+-   метрика  `allure_environment_info{key="os", value="linux"}`
+
+### Исторические тренды:
+    
+-   парсинг  `history-trend.json`
+-   метрики  `allure_history_failed_tests{build="build_N"}`
+-   автоматический расчет  `allure_flaky_tests_ratio`
+
+### Группировка по тегам:
+    
+-   поддержка популярных тегов (epic, feature, story)
+-   метрика  `allure_tests_by_label{label_type="epic", label_value="auth"}`
 
 ### Безопасность:
 
