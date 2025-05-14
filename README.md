@@ -15,7 +15,7 @@
 
 ### Проверьте метрики:
 
-    curl http://localhost:8080/metrics
+    curl http://localhost:8080/metrics | grep allure_
 
 ### Проверьте "здоровье":
 
@@ -29,20 +29,21 @@
 
 ## Пример вывода метрик:
 
-    # HELP allure_tests_total Total number of tests by status
-    # TYPE allure_tests_total gauge
-    allure_tests_total{status="passed"} 85
-    allure_tests_total{status="failed"} 5
-    allure_tests_total{status="broken"} 3
-    allure_tests_total{status="skipped"} 7
+    # Environment
+    allure_environment_info{key="browser",value="chrome"} 1
+    allure_environment_info{key="os",value="linux"} 1
     
-    # HELP allure_suite_duration_seconds Total test suite duration in seconds
-    # TYPE allure_suite_duration_seconds gauge
-    allure_suite_duration_seconds 348.2
+    # History trends
+    allure_history_failed_tests{build="build_0"} 2
+    allure_history_failed_tests{build="build_1"} 1
+    allure_flaky_tests_ratio 0.33
     
-    # HELP allure_test_duration_seconds Individual test duration
-    # TYPE allure_test_duration_seconds gauge
-    allure_test_duration_seconds{test_name="login_test"} 12.5
+    # Grouping by tags
+    allure_tests_by_label{label_type="epic",label_value="authentication"} 5
+    allure_tests_by_label{label_type="severity",label_value="critical"} 3
+    
+    # Test steps
+    allure_test_steps_total{test_name="login_test",status="passed"} 8
 
 ## Пример логов:
 
